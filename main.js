@@ -10,62 +10,88 @@ let arrayAuto = [];
 let miForm = document.querySelector("#frm");
 let inputMarca = document.querySelector("#marca");
 
-let input1  = miForm.children[1].value;
-let input2  = Number(miForm.children[2].value);
-let input3  = Number(miForm.children[3].value);
-let input4  = miForm.children[4].value;
-let input5  = miForm.children[5].value;
+let input1  = frm.children[1].value;
+let input2  = Number(frm.children[2].value);
+let input3  = Number(frm.children[3].value);
+let input4  = frm.children[4].value;
+let input5  = frm.children[5].value;
 
-let formulario = document.querySelector("#datosAuto");
+let contenedor = document.querySelector("#datosAuto");
+let displayTodos = document.querySelector("#displayTodos");
+let parrafos = displayTodos.getElementsByTagName("p");
+let bandera = false;
 
-frm.addEventListener('submit', agregarAuto);
+
+miForm.addEventListener('submit', agregarAuto);
+btnMostrar.addEventListener('click', MostrarTodosAutos);
 
 inputMarca.focus();
 
 function validarForm() {
-     input1  = miForm.children[1].value;
-     input2  = Number(miForm.children[2].value);
-     input3  = Number(miForm.children[3].value);
-     input4  = miForm.children[4].value;
-     input5  = miForm.children[5].value;
+     input1  = frm.children[1].value;
+     input2  = Number(frm.children[2].value);
+     input3  = Number(frm.children[3].value);
+     input4  = frm.children[4].value;
+     input5  = frm.children[5].value;
         console.log(input1);
         console.log(input2);
         console.log(input3);
         console.log(input4);
         console.log(input5);
         
-        inputMarca.focus();
+        if (input1 == '' || input2 == '' || input3 == '' || input4 == '' || input5 == '') {
+            alert('Error. Completa todos los campos')
+        
+        inputMarca.focus(); 
+        bandera = false;}
+        else {
+            bandera = true;
+        }
     }
    
     function agregarAuto (e) {
         e.preventDefault();
-        let formulario = e.target
-        arrayAuto.push(new Auto(input1,input2,input3,input4,input5));
-        input1  = miForm.children[1].value;
-        input2  = Number(miForm.children[2].value) = '';
-        input3  = Number(miForm.children[3].value) = '';
-        input4  = miForm.children[4].value = '';
-        input5  = miForm.children[5].value = '';
+        validarForm();
+        if (bandera == true) {
+          let opcion = confirm("Estan los datos correctamente ingresados?");
+          if (opcion == true) {
+              let frm = e.target
+              arrayAuto.push(new Auto(input1,input2,input3,input4,input5));
+          } else {
+              alert ('No se cotizara');
+          }   
+            frm.children[1].value = '';
+            frm.children[2].value = '';
+            frm.children[3].value = '';
+            frm.children[4].value = '';
+            frm.children[5].value = '';
+            contenedor.innerHTML = '';
         agregarAlDom();
         inputMarca.focus();
+        } 
     }   
 
     function agregarAlDom() {
-        formulario.innerHTML = `<h2>Ultimo Auto cotizado:</h2>
+        contenedor.innerHTML = `<h2>Ultimo Auto cotizado:</h2>
         <p>Marca: ${input1} </p>
         <p>Año: ${input2} </p>
         <p>Precio: ${input3} </p>
         <p>Mail: ${input4} </p>
         <p>Plan: ${input5} </p>`
     }
-  for (const autito of Auto)
-  {
-      datosAutos.innerHTML +=`
-      <h2>Ultimo Auto cotizado:</h2>
+    function MostrarTodosAutos (e) {
+        e.preventDefault ();
+        let i = 0;
+        displayTodos.innerHTML = '<h2>Listado de todos los autos cotizados</h2>';
+          for (const autito of arrayAuto) {
+        displayTodos.innerHTML += `
+        <h2>Ultimo Auto cotizado:</h2>
         <p>Marca: ${autito.marca} </p>
         <p>Año: ${autito.anio} </p>
         <p>Precio: ${autito.precio} </p>
         <p>Mail: ${autito.mail} </p>
-        <p>Plan: ${autito.plan} </p>`
-      
-  }
+        <p>Plan: ${autito.plan} </p>`    
+          }
+    }
+
+ 
