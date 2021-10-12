@@ -1,3 +1,4 @@
+
 class Auto {
     constructor(marca, anio, precio, mail, plan) {
         this.nombre  = marca;
@@ -21,9 +22,12 @@ let displayTodos = document.querySelector("#displayTodos");
 let parrafos = displayTodos.getElementsByTagName("p");
 let bandera = false;
 
+autosGuardados = JSON.parse(localStorage.getItem("arrayAutos"));
+
+
 
 miForm.addEventListener('submit', agregarAuto);
-btnMostrar.addEventListener('click', MostrarTodosAutos);
+// btnMostrar.addEventListener('click', MostrarTodosAutos);
 
 inputMarca.focus();
 
@@ -38,7 +42,6 @@ function validarForm() {
         console.log(input3);
         console.log(input4);
         console.log(input5);
-        
         if (input1 == '' || input2 == '' || input3 == '' || input4 == '' || input5 == '') {
             alert('Error. Completa todos los campos')
         
@@ -68,30 +71,38 @@ function validarForm() {
             contenedor.innerHTML = '';
         agregarAlDom();
         inputMarca.focus();
+
+        localStorage.setItem("autosAgregados", JSON.stringify(arrayAuto));
         } 
     }   
 
     function agregarAlDom() {
-        contenedor.innerHTML = `<h2>Ultimo Auto cotizado:</h2>
-        <p>Marca: ${input1} </p>
-        <p>Año: ${input2} </p>
-        <p>Precio: ${input3} </p>
-        <p>Mail: ${input4} </p>
-        <p>Plan: ${input5} </p>`
+        for (let i = 0; i < autosGuardados.length; i++) {
+            
+        
+            contenedor.innerHTML = `<p>marca: ${autosGuardados[0]} </p> `
+       }
+      
     }
-    function MostrarTodosAutos (e) {
-        e.preventDefault ();
-        let i = 0;
-        displayTodos.innerHTML = '<h2>Listado de todos los autos cotizados</h2>';
-          for (const autito of arrayAuto) {
-        displayTodos.innerHTML += `
-        <h2>Ultimo Auto cotizado:</h2>
-        <p>Marca: ${autito.marca} </p>
-        <p>Año: ${autito.anio} </p>
-        <p>Precio: ${autito.precio} </p>
-        <p>Mail: ${autito.mail} </p>
-        <p>Plan: ${autito.plan} </p>`    
-          }
-    }
+    //  for (marca of arrayAuto) {
+          
+    //    }
+    //    contenedor.innerHTML = arrayAuto;
+    // function MostrarTodosAutos (e) {
+    //     e.preventDefault ();
+    //     let i = 0;
+    //     displayTodos.innerHTML = '<h2>Listado de todos los autos cotizados</h2>';
+    //       for (const autito of arrayAuto) {
+    //     displayTodos.innerHTML += `
+    //     <h2>Ultimo Auto cotizado:</h2>
+    //     <p>Marca: ${autito.marca} </p>
+    //     <p>Año: ${autito.anio} </p>
+    //     <p>Precio: ${autito.precio} </p>
+    //     <p>Mail: ${autito.mail} </p>
+    //     <p>Plan: ${autito.plan} </p>`    
+    //       }
+    // }
 
- 
+    // const guardarLocal = (clave, valor) => {localStorage.setItem(clave, valor)};
+
+    // guardarLocal('listaAutos', JSON.stringify(arrayAuto));
