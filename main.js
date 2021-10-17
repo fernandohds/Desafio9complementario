@@ -22,7 +22,7 @@ let displayTodos = document.querySelector("#displayTodos");
 let parrafos = displayTodos.getElementsByTagName("p");
 let bandera = false;
 
-autosGuardados = JSON.parse(localStorage.getItem("arrayAutos"));
+
 
 
 
@@ -75,12 +75,13 @@ function validarForm() {
         localStorage.setItem("autosAgregados", JSON.stringify(arrayAuto));
         } 
     }   
+    autosGuardados = JSON.parse(localStorage.getItem("arrayAutos"));
 
     function agregarAlDom() {
-        for (let i = 0; i < autosGuardados.length; i++) {
+        for (let i = 0; i < localStorage.length; i++) {
             
-        
-            contenedor.innerHTML = `<p>marca: ${autosGuardados[0]} </p> `
+        let clave = localStorage.key(i);
+            contenedor.innerHTML = `<p>marca: ${clave[1]} </p> `
        }
       
     }
