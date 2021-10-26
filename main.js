@@ -75,25 +75,24 @@ function validarForm() {
         localStorage.setItem("autosAgregados", JSON.stringify(arrayAuto));
         } 
     }   
-    autosGuardados = JSON.parse(localStorage.getItem("arrayAutos"));
-
+    autosGuardados = JSON.parse(localStorage.getItem("autosAgregados"));
+ console.log(autosGuardados);
     function agregarAlDom() {
         for (let i = 0; i < localStorage.length; i++) {
             
         let clave = localStorage.key(i);
-            contenedor.innerHTML = `<p>marca: ${clave[1]} </p> `
-       }
-      
+            contenedor.innerHTML = `<p>marca: ${clave} </p> `
+       }   
     }
-    //  for (marca of arrayAuto) {
+    //  for (marca of autosGuardados) {
           
     //    }
-    //    contenedor.innerHTML = arrayAuto;
+    //    contenedor.innerHTML = autosGuardados;
     // function MostrarTodosAutos (e) {
     //     e.preventDefault ();
     //     let i = 0;
     //     displayTodos.innerHTML = '<h2>Listado de todos los autos cotizados</h2>';
-    //       for (const autito of arrayAuto) {
+    //       for (const autito of autosGuardados) {
     //     displayTodos.innerHTML += `
     //     <h2>Ultimo Auto cotizado:</h2>
     //     <p>Marca: ${autito.marca} </p>
