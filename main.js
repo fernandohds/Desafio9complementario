@@ -1,7 +1,7 @@
 
 class Auto {
     constructor(marca, anio, precio, mail, plan) {
-        this.nombre  = marca;
+        this.marca  = marca;
         this.anio  = anio;
         this.precio  = precio;
         this.mail = mail;
@@ -78,11 +78,14 @@ function validarForm() {
     autosGuardados = JSON.parse(localStorage.getItem("autosAgregados"));
  console.log(autosGuardados);
     function agregarAlDom() {
-        for (let i = 0; i < localStorage.length; i++) {
-            
-        let clave = localStorage.key(i);
-            contenedor.innerHTML = `<p>marca: ${clave} </p> `
-       }   
+        for (coche of autosGuardados) {
+          contenedor.innerHTML = `<p>Marca: ${coche.marca}</p>
+                                  <p>Añ0: ${coche.anio}</p> 
+                                  <p>Valor: ${coche.precio}</p> 
+                                  <p>Email: ${coche.mail} </p>
+                                  <p>Tipo de plan: ${coche.plan} </p> 
+          `
+              }
     }
     //  for (marca of autosGuardados) {
           
