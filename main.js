@@ -79,11 +79,11 @@ function validarForm() {
  console.log(autosGuardados);
     function agregarAlDom() {
         for (coche of autosGuardados) {
-          contenedor.innerHTML = `<p>Marca: ${coche.marca}</p>
-                                  <p>Añ0: ${coche.anio}</p> 
+          contenedor.innerHTML = `<div class="card col-sm-3 m-1"> <p>Marca: ${coche.marca}</p>
+                                  <p>Año: ${coche.anio}</p> 
                                   <p>Valor: ${coche.precio}</p> 
                                   <p>Email: ${coche.mail} </p>
-                                  <p>Tipo de plan: ${coche.plan} </p> 
+                                  <p>Tipo de plan: ${coche.plan} </p></div>
           `
               }
     }
